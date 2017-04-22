@@ -38,8 +38,8 @@ app.post('/upload', function (req, res) {
 
 })
 
-
-const server = app.listen(3000, 'localhost', function () {
+//添加localhost后只能在本地访问
+const server = app.listen(3000, function () {
   const host = server.address().address
   const port = server.address().port
   console.log("应用实例，访问地址为 http://%s:%s", host, port)
