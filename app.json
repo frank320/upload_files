@@ -1,0 +1,12 @@
+{
+  "name": "static_server",
+  "script": "index.js",
+  "args": [],
+  "interpreter": "node",
+  "interpreter_args": [],
+  "env": {
+    "NODE_ENV": "production",
+    "HOST": "0.0.0.0",
+    "PORT": "3000"
+  }
+}

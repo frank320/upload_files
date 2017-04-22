@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<form action="/upload" method='post' enctype='multipart/form-data' id='myform'>
+  <label for="username">姓名</label>
+  <input type="text" name='username' id='username'>
+  <br>
+  <label for="photo">照片</label>
+  <input type="file" name='photo' >
+  <br>
+  <input type="submit" value='submit'>
+</form>
+</body>
+<script>
+  document.getElementById("myform").onsubmit = function (e) {
+
+    e.preventDefault();
+
+    var f = e.target,
+      formData = new FormData(f),
+      xhr = new XMLHttpRequest();
+
+    xhr.open("POST", f.action);
+    xhr.onload = function () {
+      if (this.status === 200) {
+        alert('success')
+      } else {
+        alert('fail')
+      }
+    }
+    xhr.onabort = function () {
+      alert('fail')
+    }
+    xhr.send(formData);
+  }
+</script>
+</html>
