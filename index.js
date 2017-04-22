@@ -9,7 +9,6 @@ const app = express()
 const formidable = require('formidable')
 
 function getLocalIP() {
-  var map = [];
   var ifaces = os.networkInterfaces();
   console.log(ifaces);
   for (var dev in ifaces) {
@@ -50,7 +49,9 @@ function getLocalIP() {
     }
   }
 }
-console.log(getLocalIP());
+const ip = getLocalIP()
+
+
 app.get('/', function (req, res) {
   res.sendfile(path.join(__dirname, 'index.html'))
 })
@@ -64,8 +65,6 @@ app.post('/upload', function (req, res) {
 
   // 指定本次上传的文件保持扩展名（默认是false，没有扩展名）
   form.keepExtensions = true
-  console.log('ip', server.address().address)
-  console.log('port', server.address().port)
   form.parse(req, function (err, fields, files) {
     console.log(fields)
     console.log(files)
@@ -82,9 +81,9 @@ app.post('/upload', function (req, res) {
 
 })
 
-//添加localhost后只能在本地访问
+//添加localhost或者127.0.0.1后只能在本地访问
 const server = app.listen(3000, function () {
-  const host = server.address().address
-  const port = server.address().port
+  const host = server.address().address //0.0.0.0  本地和局域网内都可以访问
+  const port = server.address().port//3000
   console.log("应用实例，访问地址为 http://%s:%s", host, port)
 })
