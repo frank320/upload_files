@@ -26,12 +26,12 @@ function getLocalIP() {
       }
       // 找到eth0和eth1分别的ip
       var ip = null, ip2 = null;
-      ifaces[dev].forEach(function(details) {
+      ifaces[dev].forEach(function (details) {
         if (details.family == 'IPv4') {
           ip = details.address;
         }
       });
-      ifaces[dev2].forEach(function(details) {
+      ifaces[dev2].forEach(function (details) {
         if (details.family == 'IPv4') {
           ip2 = details.address;
         }
@@ -43,13 +43,12 @@ function getLocalIP() {
       if (ip.indexOf('10.') == 0 ||
         ip.indexOf('172.') == 0 ||
         ip.indexOf('192.') == 0) {
-        map.push({"intranet_ip" : ip, "internet_ip" : ip2});
+        return ip2;
       } else {
-        map.push({"intranet_ip" : ip2, "internet_ip" : ip});
+        return ip;
       }
     }
   }
-  return map;
 }
 console.log(getLocalIP());
 app.get('/', function (req, res) {
