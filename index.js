@@ -3,10 +3,12 @@
  */
 const path = require('path')
 const fs = require('fs')
+const os = require('os')
 const express = require('express')
 const app = express()
 const formidable = require('formidable')
 
+console.log('hostname',os.hostname())
 app.get('/', function (req, res) {
   res.sendfile(path.join(__dirname, 'index.html'))
 })
