@@ -10,7 +10,7 @@
   <input type="text" name='username' id='username'>
   <br>
   <label for="photo">照片</label>
-  <input type="file" name='photo' >
+  <input type="file" name='photo'>
   <br>
   <input type="submit" value='submit'>
 </form>
@@ -24,7 +24,13 @@
       formData = new FormData(f),
       xhr = new XMLHttpRequest();
 
-    xhr.open("POST", f.action);
+    xhr.open("POST", f.action)
+
+    xhr.upload.onprogress = function (e) {
+      console.log(e.total)
+      console.log(e.lengthComputable)
+      console.log(e.loaded)
+    }
     xhr.onload = function () {
       if (this.status === 200) {
         alert('success')
@@ -35,7 +41,9 @@
     xhr.onabort = function () {
       alert('fail')
     }
-    xhr.send(formData);
+    xhr.send(formData)
+
+
   }
 </script>
 </html>

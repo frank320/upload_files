@@ -10,7 +10,6 @@ const formidable = require('formidable')
 
 function getLocalIP() {
   var ifaces = os.networkInterfaces();
-  console.log(ifaces);
   for (var dev in ifaces) {
     if (dev.indexOf('eth0') != -1) {
       var tokens = dev.split(':');
